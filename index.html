@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Parliamentary Water Network | Bringing Together Members of Parliament for Safe Water Worldwide</title>
+<meta name="description" content="The Global Parliamentary Water Network connects Members of Parliament worldwide to accelerate access to safe drinking water through legislative action.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --blue: #1B3A5C;
+  --teal: #2BB5B2;
+  --gold: #D4A843;
+  --light: #F7F9FC;
+  --white: #FFFFFF;
+  --charcoal: #2D2D2D;
+  --grey: #6B7280;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--charcoal); line-height: 1.7; }
+::selection { background: var(--teal); color: white; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--blue); line-height: 1.3; }
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(15,40,68,0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.nav-brand span { color: var(--teal); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; gap: 6px; }
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: white; background: rgba(255,255,255,0.1); }
+
+/* Language switcher */
+.lang-switcher { position: relative; }
+.lang-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+}
+.lang-btn:hover { background: rgba(255,255,255,0.18); }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 300;
+}
+.lang-dropdown.open { display: block; }
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.lang-option:hover { background: var(--light); }
+.lang-option img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; }
+
+/* Mobile hamburger */
+.hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: rgba(15,40,68,0.98);
+  padding: 16px 24px;
+  z-index: 199;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  padding: 12px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Hero ── */
+.hero {
+  background: #0B1C32 url('bg-map.jpg') center center / contain no-repeat;
+  position: relative;
+  padding: 160px 24px 100px;
+  text-align: center;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11,28,50,0.82) 0%, rgba(15,40,68,0.75) 50%, rgba(11,28,50,0.88) 100%);
+}
+.hero-content { position: relative; max-width: 760px; margin: 0 auto; }
+.hero-title-group { margin-bottom: 48px; }
+.hero-title-group h2 {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--teal);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  color: var(--white);
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+.hero p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.88);
+  max-width: 580px;
+  margin: 0 auto 44px;
+  line-height: 1.8;
+}
+.hero-cta { margin-bottom: 60px; }
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.stat { text-align: center; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--teal); display: block; line-height: 1; }
+.stat-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+
+/* ── Sections ── */
+section { padding: 80px 24px; }
+.container { max-width: 880px; margin: 0 auto; }
+.section-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+section h2 { font-size: 2rem; margin-bottom: 20px; }
+section p.lead { font-size: 1.05rem; color: var(--grey); margin-bottom: 40px; max-width: 660px; line-height: 1.8; }
+
+/* ── About ── */
+.about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 40px; }
+.about-card {
+  background: var(--light);
+  border-radius: 8px;
+  padding: 32px;
+  border-left: 3px solid var(--teal);
+}
+.about-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.about-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.7; }
+
+/* ── Theory of Change ── */
+.toc-section { background: var(--blue); color: var(--white); text-align: center; padding: 80px 24px; }
+.toc-section h2 { color: var(--white); }
+.toc-section .section-label { color: var(--gold); }
+.toc-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+}
+.toc-step {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 24px 28px;
+  min-width: 140px;
+}
+.toc-step .num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--teal); }
+.toc-step .label { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-top: 6px; }
+.toc-arrow { font-size: 1.5rem; color: var(--gold); }
+
+/* ── Caucuses ── */
+.caucuses { background: var(--light); }
+.caucus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
+.caucus-card {
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 28px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.caucus-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); border-color: var(--teal); }
+.caucus-flag { font-size: 1.8rem; margin-bottom: 10px; }
+.caucus-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.caucus-card .caucus-name { font-size: 0.82rem; color: var(--teal); font-weight: 600; margin-bottom: 10px; }
+.caucus-card p { font-size: 0.88rem; color: var(--grey); line-height: 1.7; }
+.caucus-card .est { font-size: 0.72rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ── Resources ── */
+.resources { background: var(--white); }
+.resource-list { margin-top: 32px; }
+.resource-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ECEEF1;
+}
+.resource-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.resource-item h3 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; }
+.resource-item p { font-size: 0.88rem; color: var(--grey); margin-top: 4px; line-height: 1.6; }
+
+/* ── Contact ── */
+.contact { background: var(--light); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 40px; }
+.contact-info h3 { font-size: 1.15rem; margin-bottom: 4px; }
+.contact-info .title-role { font-size: 0.85rem; color: var(--teal); font-weight: 600; margin-bottom: 16px; }
+.contact-info p { font-size: 0.92rem; color: var(--grey); margin-bottom: 16px; line-height: 1.7; }
+.contact-detail { font-size: 0.88rem; color: var(--charcoal); margin-bottom: 4px; }
+.contact-detail a { color: var(--blue); text-decoration: none; }
+.contact-detail a:hover { color: var(--teal); }
+.contact-links { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+.contact-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.contact-link-btn:hover { border-color: var(--teal); color: var(--teal); }
+form label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 4px; color: var(--blue); }
+form input, form textarea, form select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+  transition: border-color 0.2s;
+  background: white;
+}
+form input:focus, form textarea:focus, form select:focus { outline: none; border-color: var(--teal); }
+form textarea { resize: vertical; min-height: 100px; }
+.btn {
+  display: inline-block;
+  background: var(--teal);
+  color: white;
+  padding: 13px 36px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.btn:hover { background: #249E9B; }
+
+/* ── Footer ── */
+footer {
+  background: #0F2844;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 36px 24px;
+  font-size: 0.82rem;
+}
+footer strong { color: white; }
+footer a { color: var(--teal); text-decoration: none; }
+
+/* ── Fade-in animation ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── News cards hover ── */
+.news-card { transition: box-shadow 0.2s, border-color 0.2s; }
+.news-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); border-color: var(--teal); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 32px; }
+  .toc-arrow { display: none; }
+  .toc-flow { gap: 12px; }
+  .caucus-grid { grid-template-columns: 1fr; }
+  section { padding: 60px 20px; }
+  .hero { padding: 130px 20px 70px; min-height: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="#" class="nav-brand"><span>Global Parliamentary</span> Water Network</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about">About Us</a>
+      <a href="#leadership">Who We Are</a>
+      <a href="#caucuses">Active Caucuses</a>
+      <a href="#resources">Resources</a>
+      <a href="#news">News &amp; Events</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLang()">
+        <img src="https://flagcdn.com/w20/gb.png" width="20" height="14" alt="EN" style="border-radius:2px">
+        EN &#9662;
+      </button>
+      <div class="lang-dropdown notranslate" id="langDropdown" translate="no">
+        <a class="lang-option notranslate" href="#" onclick="translatePage('en')" translate="no">
+          <img src="https://flagcdn.com/w20/gb.png" width="20" height="14" alt="EN"> English
+        </a>
+        <a class="lang-option notranslate" href="#" onclick="translatePage('fr')" translate="no">
+          <img src="https://flagcdn.com/w20/fr.png" width="20" height="14" alt="FR"> Fran&ccedil;ais
+        </a>
+        <a class="lang-option notranslate" href="#" onclick="translatePage('es')" translate="no">
+          <img src="https://flagcdn.com/w20/es.png" width="20" height="14" alt="ES"> Espa&ntilde;ol
+        </a>
+        <a class="lang-option notranslate" href="#" onclick="translatePage('pt')" translate="no">
+          <img src="https://flagcdn.com/w20/pt.png" width="20" height="14" alt="PT"> Portugu&ecirc;s
+        </a>
+        <a class="lang-option notranslate" href="#" onclick="translatePage('sw')" translate="no">
+          <img src="https://flagcdn.com/w20/ke.png" width="20" height="14" alt="SW"> Kiswahili
+        </a>
+      </div>
+    </div>
+    <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About Us</a>
+  <a href="#leadership" onclick="closeMobile()">Who We Are</a>
+  <a href="#caucuses" onclick="closeMobile()">Active Caucuses</a>
+  <a href="#resources" onclick="closeMobile()">Resources</a>
+  <a href="#news" onclick="closeMobile()">News &amp; Events</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-title-group">
+      <h2>Global Parliamentary Water Network</h2>
+      <h1>Bringing Together Members of Parliament<br>for Safe Water Worldwide</h1>
+    </div>
+    <p>It&rsquo;s 2026 and over two billion people still lack safe drinking water. Parliaments write the laws and pass the budgets that can accelerate progress. We help legislators lead.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn">Join the Network</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">7+</span><span class="stat-label">Established Caucuses</span></div>
+      <div class="stat"><span class="stat-num">19</span><span class="stat-label">Countries Engaged</span></div>
+      <div class="stat"><span class="stat-num">216</span><span class="stat-label">Parliamentarians at<br>10th World Water Forum</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-label">About Us</div>
+    <h2>Why Parliamentary Water Caucuses</h2>
+    <p class="lead">Legislators draft laws, vote on budgets, and hold governments accountable. When parliamentarians organise around water, the results are stronger laws, increased funding, and accelerated progress toward safe water for all.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>The Challenge</h3>
+        <p>2.2 billion people lack safely managed drinking water. The global water sector has been dominated by technical approaches, underweighting the critical role of the legislative branch in driving change.</p>
+      </div>
+      <div class="about-card">
+        <h3>Our Approach</h3>
+        <p>Parliamentary Water Caucuses are cross-party groups of legislators who collaborate to pass water legislation, increase budgets, and hold ministries accountable for water service delivery.</p>
+      </div>
+      <div class="about-card">
+        <h3>The Three-Legged Stool</h3>
+        <p>Successful caucuses are built on three pillars: elected parliamentarians, technical ministry officials, and civil society leadership. This collaboration drives trust, alignment, and results.</p>
+      </div>
+      <div class="about-card">
+        <h3>UN SDG Partnership</h3>
+        <p>GPWN is a registered UN SDG Partnership working across 11 countries to launch and strengthen water caucuses, targeting SDGs 2, 3, 6, 16, and 17.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Theory of Change ── -->
+<section class="toc-section">
+  <div class="container">
+    <div class="section-label">Our Theory of Change</div>
+    <h2>From Caucus to Clean Water</h2>
+    <div class="toc-flow">
+      <div class="toc-step"><div class="num">1</div><div class="label">Water Caucus<br>Formed</div></div>
+      <div class="toc-arrow">&rarr;</div>
+      <div class="toc-step"><div class="num">2</div><div class="label">Stronger Laws<br>Passed</div></div>
+      <div class="toc-arrow">&rarr;</div>
+      <div class="toc-step"><div class="num">3</div><div class="label">Budgets<br>Increased</div></div>
+      <div class="toc-arrow">&rarr;</div>
+      <div class="toc-step"><div class="num">4</div><div class="label">Access<br>Accelerated</div></div>
+      <div class="toc-arrow">&rarr;</div>
+      <div class="toc-step"><div class="num">SDG 6</div><div class="label">Clean Water<br>for All</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Active Caucuses ── -->
+<section class="caucuses" id="caucuses">
+  <div class="container">
+    <div class="section-label">Active Caucuses</div>
+    <h2>Parliamentary Water Caucuses in Action</h2>
+    <p class="lead">Seven countries have established parliamentary water caucuses, with more than a dozen others in various stages of formation.</p>
+    <div class="caucus-grid">
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127482;&#127468;</div>
+        <h3>Uganda</h3>
+        <div class="caucus-name">Uganda Parliamentary Forum on Water</div>
+        <div class="est">Est. 2012 &bull; 142+ MPs</div>
+        <p>Model caucus. Founded by Hon. Jacqueline Amongin. Passed first MHM motion in Parliament. Hosted Presidential Dialogue on Water (Oct 2024).</p>
+      </div>
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127473;&#127479;</div>
+        <h3>Liberia</h3>
+        <div class="caucus-name">Legislative Water Caucus</div>
+        <div class="est">Est. 2016</div>
+        <p>Contributed to establishing the National Water Commission. Secured water budget line in the National Budget. Pushing for formal Standing Committee.</p>
+      </div>
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127477;&#127472;</div>
+        <h3>Pakistan</h3>
+        <div class="caucus-name">Senate Water Resources Caucus</div>
+        <div class="est">Est. December 2023</div>
+        <p>First-ever parliamentary water caucus in Pakistan. Unanimously approved by the Senate. Chaired by Senator Saadia Abbasi.</p>
+      </div>
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127487;&#127474;</div>
+        <h3>Zambia</h3>
+        <div class="caucus-name">Parliamentary Caucus on Water</div>
+        <div class="est">Est. 2024</div>
+        <p>Signed MoU with NGO Water Forum. Proposed SADC Regional Water Parliamentary Network. Chaired by Hon. Twaambo Mutinta.</p>
+      </div>
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127482;&#127480;</div>
+        <h3>United States</h3>
+        <div class="caucus-name">Congressional Global Water Security Caucus</div>
+        <div class="est">Est. 2020</div>
+        <p>Bipartisan caucus providing oversight and advocacy on water as central to U.S. global health and national security.</p>
+      </div>
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127468;&#127463;</div>
+        <h3>United Kingdom</h3>
+        <div class="caucus-name">APPG on Water, Sanitation &amp; Hygiene</div>
+        <div class="est">Long-standing</div>
+        <p>Cross-party group with WaterAid as secretariat. Joint inquiry on water and antimicrobial resistance. Active in Parliament.</p>
+      </div>
+      <div class="caucus-card">
+        <div class="caucus-flag">&#127480;&#127480;</div>
+        <h3>South Sudan</h3>
+        <div class="caucus-name">Parliamentary Caucus on Water</div>
+        <div class="est">Recently launched</div>
+        <p>President Kiir signed Heads of State Water Compact&mdash;first African country. $56M earmarked for water strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Resources ── -->
+<section class="resources" id="resources">
+  <div class="container">
+    <div class="section-label">Resources</div>
+    <h2>Key Documents &amp; Publications</h2>
+    <div class="resource-list">
+      <div class="resource-item">
+        <div class="resource-icon">&#128220;</div>
+        <div>
+          <h3>Nusa Dua Communique (May 2024)</h3>
+          <p>Outcome document from the 10th World Water Forum. 216 parliamentarians from 43 countries pledging legislative action on water.</p>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">&#128218;</div>
+        <div>
+          <h3>SWA Handbook for Parliamentarians</h3>
+          <p>Sanitation and Water for All guide helping legislators advance the human rights to water and sanitation.</p>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">&#127908;</div>
+        <div>
+          <h3>Inter-Parliamentary Union: Calling on Parliaments (Feb 2024)</h3>
+          <p>Human rights and the potential of Parliamentary Water Caucuses&mdash;the case for legislative engagement worldwide.</p>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">&#128196;</div>
+        <div>
+          <h3>Water Is (Good) Politics &mdash; The Parliamentarian (2023)</h3>
+          <p>Hon. Jacqueline Amongin on the development of Parliamentary Water Caucuses. Published by the Commonwealth Parliamentary Association.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── News & Events ── -->
+<section class="news" id="news" style="background:var(--light);">
+  <div class="container">
+    <div class="section-label">News &amp; Events</div>
+    <h2>Recent Developments</h2>
+    <div style="margin-top:32px; display:grid; gap:20px;">
+      <div style="display:flex; gap:20px; padding:24px; background:white; border-radius:10px; border:1px solid #E5E7EB; transition: box-shadow 0.2s, border-color 0.2s;">
+        <div style="flex-shrink:0; width:56px; height:56px; background:var(--blue); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:0.72rem; font-weight:700; text-align:center; line-height:1.2;">MAY<br>2024</div>
+        <div>
+          <h3 style="font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:600; margin-bottom:4px;">Nusa Dua Communique &mdash; 10th World Water Forum</h3>
+          <p style="font-size:0.88rem; color:var(--grey);">216 parliamentarians from 43 countries pledge to promote laws supporting sustainable water management and allocate sufficient budgets. Bali, Indonesia.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:20px; padding:24px; background:white; border-radius:10px; border:1px solid #E5E7EB; transition: box-shadow 0.2s, border-color 0.2s;">
+        <div style="flex-shrink:0; width:56px; height:56px; background:var(--blue); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:0.72rem; font-weight:700; text-align:center; line-height:1.2;">NOV<br>2024</div>
+        <div>
+          <h3 style="font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:600; margin-bottom:4px;">Zambia PC-Water Signs MoU with NGO Water Forum</h3>
+          <p style="font-size:0.88rem; color:var(--grey);">Zambia's Parliamentary Caucus on Water formalises partnership at Parliament Buildings, Lusaka. Proposes SADC Regional Water Parliamentary Network.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:20px; padding:24px; background:white; border-radius:10px; border:1px solid #E5E7EB; transition: box-shadow 0.2s, border-color 0.2s;">
+        <div style="flex-shrink:0; width:56px; height:56px; background:var(--blue); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:0.72rem; font-weight:700; text-align:center; line-height:1.2;">OCT<br>2024</div>
+        <div>
+          <h3 style="font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:600; margin-bottom:4px;">Uganda Hosts Inaugural Presidential Dialogue on Water</h3>
+          <p style="font-size:0.88rem; color:var(--grey);">UPF-Water convenes high-level stakeholders under the theme &ldquo;Building Resilient Communities: Prioritizing Water Financing and Investment.&rdquo;</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:20px; padding:24px; background:white; border-radius:10px; border:1px solid #E5E7EB; transition: box-shadow 0.2s, border-color 0.2s;">
+        <div style="flex-shrink:0; width:56px; height:56px; background:var(--blue); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:0.72rem; font-weight:700; text-align:center; line-height:1.2;">MAR<br>2025</div>
+        <div>
+          <h3 style="font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:600; margin-bottom:4px;">Zambia Engages South African Parliament</h3>
+          <p style="font-size:0.88rem; color:var(--grey);">Historic engagement between Zambia NGO Water Forum and South Africa&rsquo;s Parliament Portfolio Committee catalyses regional legislative action on water.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact / Who We Are ── -->
+<section class="contact" id="leadership">
+  <div class="container" id="contact">
+    <div class="section-label">Who We Are</div>
+    <h2>Secretariat</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <img src="john-oldfield.jpg" alt="John Oldfield" style="width:130px; height:130px; border-radius:50%; object-fit:cover; margin-bottom:16px; border:3px solid var(--teal);">
+        <h3>John Oldfield</h3>
+        <div class="title-role">Founder &amp; CEO, Global Parliamentary Water Network</div>
+
+        <p class="contact-detail"><a href="mailto:John@AccelerateGlobalNow.com">John@AccelerateGlobalNow.com</a></p>
+        <p class="contact-detail"><a href="tel:+19176674323">+1.917.667.4323</a></p>
+
+        <p style="margin-top:16px;">John Oldfield is CEO at Accelerate Global, LLC, advising non-profit, corporate, and government clients in their efforts to rapidly and sustainably accelerate progress toward water, health, security, climate, gender, and environment goals. He has also recently launched the Global Parliamentary Water Network.</p>
+
+        <p>From 2017&ndash;2021 he was the Managing Principal at Global Water 2020. He is an internationally recognized expert in global water security. He has testified before the U.S. Congress several times and has been published and interviewed in CNN, The Hill, USA Today, Forbes, NPR, New Security Beat, Circle of Blue, The Guardian, and Inside Philanthropy.</p>
+
+        <p>Previously, John was the CEO of Water Advocates, encouraging the entire U.S. government to elevate and integrate global water security across the U.S. foreign policy and national security architecture. He also successfully influenced the Intelligence Authorization Act of 2020, requiring the U.S. intelligence community to &ldquo;report on the implications of water insecurity on the national security interests of the United States.&rdquo;</p>
+
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/johnoldfield/" class="contact-link-btn" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com/johnforwater" class="contact-link-btn" target="_blank">@JohnforWater</a>
+          <a href="https://sdgs.un.org/partnerships/launching-and-strengthening-parliamentary-water-caucuses" class="contact-link-btn" target="_blank">UN SDG Partnership</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Inter',sans-serif; font-size:1rem; margin-bottom:20px; color:var(--blue);">Get in Touch</h3>
+        <form id="contactForm" onsubmit="return handleSubmit(event)">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your name">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
+          <label for="role">I am a...</label>
+          <select id="role" name="role">
+            <option value="">Select your role</option>
+            <option value="mp">Member of Parliament</option>
+            <option value="staff">Parliamentary staff</option>
+            <option value="cso">Civil society / NGO</option>
+            <option value="govt">Government official</option>
+            <option value="academic">Academic / Researcher</option>
+            <option value="media">Media</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="message">How can we work together?</label>
+          <textarea id="message" name="message" placeholder="Tell us about your interest in parliamentary water advocacy..."></textarea>
+          <button type="submit" class="btn" style="width:100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p><strong>Global Parliamentary Water Network</strong> &mdash; Bringing Together Members of Parliament for Safe Water Worldwide.</p>
+  <p style="margin-top:8px;">&copy; 2026 GPWN &nbsp;|&nbsp; <a href="mailto:John@AccelerateGlobalNow.com">John@AccelerateGlobalNow.com</a> &nbsp;|&nbsp; watercaucus.org</p>
+</footer>
+
+<!-- Google Translate (hidden widget, triggered by our custom flags) -->
+<div id="google_translate_element" style="display:none;"></div>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,fr,es,pt,sw',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+// ── Language Switcher ──
+function toggleLang() {
+  document.getElementById('langDropdown').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-switcher')) {
+    document.getElementById('langDropdown').classList.remove('open');
+  }
+});
+
+function translatePage(lang) {
+  document.getElementById('langDropdown').classList.remove('open');
+  // Trigger Google Translate
+  var sel = document.querySelector('.goog-te-combo');
+  if (sel) {
+    sel.value = lang;
+    sel.dispatchEvent(new Event('change'));
+  } else {
+    // Fallback: set cookie and reload
+    document.cookie = "googtrans=/en/" + lang + ";path=/";
+    document.cookie = "googtrans=/en/" + lang + ";path=/;domain=" + location.hostname;
+    location.reload();
+  }
+}
+
+// ── Mobile Menu ──
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ── Contact Form ──
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('Thank you for reaching out! We will be in touch soon.');
+  e.target.reset();
+  return false;
+}
+
+// Hide Google Translate top bar
+var gtStyle = document.createElement('style');
+gtStyle.textContent = '.skiptranslate { display: none !important; } body { top: 0 !important; position: static !important; } .goog-te-banner-frame { display: none !important; }';
+document.head.appendChild(gtStyle);
+
+// ── Fade-in on scroll ──
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.container, .toc-flow, .hero-content').forEach(function(el) {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+
+// ── Nav background on scroll ──
+var navEl = document.querySelector('nav');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 40) {
+    navEl.style.background = 'rgba(15,40,68,0.98)';
+  } else {
+    navEl.style.background = 'rgba(15,40,68,0.95)';
+  }
+});
+</script>
+</body>
+</html>
