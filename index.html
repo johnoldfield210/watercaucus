@@ -753,6 +753,28 @@ function translatePage(lang) {
   }
 }
 
+// ── Auto-translate based on URL path (e.g. /fr, /es, /pt, /sw) ──
+(function() {
+  var langMap = { '/fr': 'fr', '/es': 'es', '/pt': 'pt', '/sw': 'sw' };
+  var path = window.location.pathname.replace(/\/$/, '');
+  var autoLang = langMap[path];
+  if (autoLang) {
+    document.cookie = "googtrans=/en/" + autoLang + ";path=/";
+    document.cookie = "googtrans=/en/" + autoLang + ";path=/;domain=" + location.hostname;
+    // Wait for Google Translate to load, then trigger
+    var checkInterval = setInterval(function() {
+      var sel = document.querySelector('.goog-te-combo');
+      if (sel) {
+        clearInterval(checkInterval);
+        sel.value = autoLang;
+        sel.dispatchEvent(new Event('change'));
+      }
+    }, 300);
+    // Stop checking after 10 seconds
+    setTimeout(function() { clearInterval(checkInterval); }, 10000);
+  }
+})();
+
 // ── Mobile Menu ──
 function toggleMobile() {
   document.getElementById('mobileMenu').classList.toggle('open');
